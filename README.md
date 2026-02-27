@@ -10,7 +10,7 @@ This story happened when SirHurt lead developer got a heads up on someone named 
 This website was vibecoded with Antigravity by Google, using Gemini 3.1 Pro, don't expect much from this project, just giggles and farts.
 We will never know what did bitdancer meant by "sirhurt files", whether it is source code or something like that.
 
-..and to see this masterpiece, you can visit it here: https://github.com/malichevsky/sirhurt-files
+..and to see this masterpiece, you can visit it here: https://malichevsky.github.io/sirhurt-files/
 
 ---
 
