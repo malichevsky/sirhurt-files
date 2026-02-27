@@ -1,0 +1,421 @@
+:root {
+    --bg-color: #001224;
+    --panel-bg: #001a33;
+    --border-color: #004080;
+    --text-primary: #e6f0fa;
+    --text-secondary: #80aadd;
+    --accent-gold: #c0a062;
+    --accent-gold-dark: #8c7343;
+    --accent-red: #d32f2f;
+    --font-heading: 'Libre Baskerville', serif;
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'Courier Prime', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Authentication Overlay */
+#auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 18, 36, 0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.auth-box {
+    background: #000;
+    border: 2px solid var(--accent-red);
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.4);
+    max-width: 600px;
+    padding: 2rem;
+    text-align: left;
+    font-family: var(--font-mono);
+}
+
+.auth-box h1 {
+    color: var(--accent-red);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 5px;
+    animation: pulse 2s infinite;
+}
+
+.auth-box p {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+.auth-box ul {
+    margin: 0 0 2rem 1.5rem;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+.auth-box li {
+    margin-bottom: 0.5rem;
+}
+
+.auth-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    font-family: var(--font-mono);
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--accent-red);
+    color: white;
+    border: 1px solid #ff4d4d;
+}
+
+.btn-primary:hover {
+    background: #ff4d4d;
+    box-shadow: 0 0 10px #ff4d4d;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #888;
+    border: 1px solid #555;
+}
+
+.btn-secondary:hover {
+    background: #333;
+    color: white;
+}
+
+.status-msg {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Header Section */
+.doj-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--panel-bg);
+    border-bottom: 4px solid var(--accent-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.seal-container {
+    margin-right: 2rem;
+    filter: drop-shadow(0 0 10px rgba(192, 160, 98, 0.3));
+}
+
+.header-titles {
+    text-align: left;
+}
+
+.header-titles h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.header-titles h2 {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+}
+
+.classification-banner {
+    display: inline-block;
+    background: var(--accent-red);
+    color: white;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+/* Dashboard / Main Content */
+.dashboard {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.case-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--accent-gold);
+}
+
+.case-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 3rem;
+}
+
+.meta-item {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+}
+
+.meta-item span {
+    color: var(--text-secondary);
+    display: inline-block;
+    width: 120px;
+}
+
+.system-time {
+    font-family: var(--font-mono);
+    color: #00ff00;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* File Browser */
+.file-browser {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+}
+
+.browser-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #001224;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.browser-header h3 {
+    font-family: var(--font-mono);
+    color: var(--accent-gold);
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.search-box {
+    background: #000;
+    border: 1px solid var(--border-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    width: 300px;
+    outline: none;
+}
+
+.search-box:focus {
+    border-color: var(--accent-gold);
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.file-card {
+    background: #002244;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.file-card:hover {
+    background: #003366;
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.file-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: var(--accent-gold);
+}
+
+.file-details h4 {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    word-break: break-all;
+}
+
+.file-details p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background: #fdfbf7; /* Paper-like background for docs */
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border: 1px solid #ccc;
+}
+
+.modal-header {
+    background: var(--panel-bg);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent-gold);
+}
+
+.modal-header h4 {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.modal-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-print, .btn-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.btn-print:hover { color: var(--accent-gold); }
+.btn-close:hover { color: var(--accent-red); }
+
+.modal-body {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    position: relative;
+    background: repeating-linear-gradient(
+        0deg,
+        #fdfbf7,
+        #fdfbf7 29px,
+        #e0e0e0 30px
+    ); /* Lined paper effect */
+    background-attachment: local;
+}
+
+.doc-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 6rem;
+    font-family: var(--font-heading);
+    color: rgba(211, 47, 47, 0.1);
+    font-weight: bold;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 0;
+}
+
+.terminal-text {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: #111;
+    line-height: 2.2; /* To match the lined paper */
+    white-space: pre-wrap;
+}
+
+.redacted {
+    background-color: #000;
+    color: #000;
+    padding: 0 0.5rem;
+    user-select: none;
+}
+
+.modal-footer {
+    background: #e0e0e0;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: #555;
+    border-top: 1px solid #ccc;
+    font-weight: bold;
+}

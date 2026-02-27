@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Justice - Case Files Database</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;600;800&family=Courier+Prime:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="auth-overlay">
+        <div class="auth-box">
+            <h1>WARNING</h1>
+            <p>YOU ARE ACCESSING A U.S. GOVERNMENT (USG) INFORMATION SYSTEM (IS) THAT IS PROVIDED FOR USG-AUTHORIZED USE
+                ONLY.</p>
+            <p>By using this IS, you consent to the following conditions:</p>
+            <ul>
+                <li>The USG routinely intercepts and monitors communications on this IS for purposes including, but not
+                    limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel
+                    misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.</li>
+                <li>At any time, the USG may inspect and seize data stored on this IS.</li>
+                <li>Communications using, or data stored on, this IS are not private, are subject to routine monitoring,
+                    interception, and search, and may be disclosed or used for any USG authorized purpose.</li>
+                <li>This IS includes security measures (e.g., authentication and access controls) to protect USG
+                    interests--not for your personal benefit or privacy.</li>
+            </ul>
+            <div class="auth-actions">
+                <button id="btn-agree" class="btn-primary">I AGREE</button>
+                <button id="btn-decline" class="btn-secondary">DECLINE</button>
+            </div>
+            <div id="auth-status" class="status-msg hidden">AUTHENTICATING CIPHER...</div>
+        </div>
+    </div>
+
+    <header class="doj-header">
+        <div class="seal-container">
+            <svg viewBox="0 0 200 200" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer ring -->
+                <circle cx="100" cy="100" r="95" fill="#002b5e" stroke="#c0a062" stroke-width="4" />
+                <circle cx="100" cy="100" r="88" fill="none" stroke="#c0a062" stroke-width="2" stroke-dasharray="4,4" />
+                <!-- Inner circle -->
+                <circle cx="100" cy="100" r="65" fill="#ffffff" />
+                <!-- Text -->
+                <path id="curve" d="M 25 100 A 75 75 0 1 1 175 100" fill="transparent" />
+                <text font-family="'Libre Baskerville', serif" font-weight="bold" font-size="12" fill="#c0a062"
+                    letter-spacing="1">
+                    <textPath href="#curve" startOffset="50%" text-anchor="middle">DEPARTMENT OF JUSTICE</textPath>
+                </text>
+                <path id="curve2" d="M 170 100 A 70 70 0 0 1 30 100" fill="transparent" />
+                <text font-family="'Libre Baskerville', serif" font-weight="bold" font-size="11" fill="#c0a062"
+                    letter-spacing="2">
+                    <textPath href="#curve2" startOffset="50%" text-anchor="middle">DOMITIA JUSTITIA</textPath>
+                </text>
+
+                <!-- Center Graphic: Scales -->
+                <path d="M100 45 L100 135" stroke="#002b5e" stroke-width="3" />
+                <path d="M70 65 L130 65" stroke="#002b5e" stroke-width="3" />
+                <circle cx="100" cy="45" r="4" fill="#002b5e" />
+                <!-- Left Scale -->
+                <path d="M70 65 L55 95 L85 95 Z" fill="none" stroke="#002b5e" stroke-width="2" />
+                <!-- Right Scale -->
+                <path d="M130 65 L115 95 L145 95 Z" fill="none" stroke="#002b5e" stroke-width="2" />
+                <!-- Base -->
+                <path d="M85 135 L115 135 L125 145 L75 145 Z" fill="#002b5e" />
+
+                <!-- Stars -->
+                <polygon points="100,20 103,28 111,28 105,33 107,41 100,36 93,41 95,33 89,28 97,28" fill="#c0a062" />
+                <!-- Stripes/Shield on the background of scales -->
+                <path d="M85 75 L115 75 L115 110 L100 125 L85 110 Z" fill="none" stroke="#c0a062" stroke-width="2" />
+            </svg>
+        </div>
+        <div class="header-titles">
+            <h1>DEPARTMENT OF JUSTICE</h1>
+            <h2>FEDERAL INVESTIGATIVE DATABASE</h2>
+            <div class="classification-banner">CLASSIFIED: TOP SECRET / SCI</div>
+        </div>
+    </header>
+
+    <main class="dashboard hidden" id="main-content">
+        <section class="case-info">
+            <div class="case-meta">
+                <div class="meta-item"><span>CASE NUMBER:</span> 2026-CR-7749-US</div>
+                <div class="meta-item"><span>SUBJECT:</span> SIRHURT FILES (OPERATION "BROKEN LUA")</div>
+                <div class="meta-item"><span>STATUS:</span> SEIZED / EVIDENTIARY REVIEW</div>
+                <div class="meta-item"><span>AGENCY:</span> CYBER INVESTIGATIVE TASK FORCE</div>
+                <div class="meta-item"><span>CLEARANCE:</span> LEVEL 5 REQUIRED</div>
+            </div>
+            <div class="system-time" id="sys-time">SYS_TIME: 00:00:00</div>
+        </section>
+
+        <section class="file-browser">
+            <div class="browser-header">
+                <h3>DIRECTORY: /EVIDENCE/SIRHURT_CONFIDENTIAL/</h3>
+                <input type="text" placeholder="Search files..." class="search-box">
+            </div>
+
+            <div class="file-grid" id="file-grid">
+                <!-- Dynamically populated files go here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Viewing Files -->
+    <div id="file-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modal-title">FILENAME.TXT</h4>
+                <div class="modal-controls">
+                    <button class="btn-print" title="Print Document"><svg transform="scale(0.8)" viewBox="0 0 24 24"
+                            width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg></button>
+                    <button class="btn-close" id="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="doc-watermark">CONFIDENTIAL</div>
+                <pre id="modal-text" class="terminal-text"></pre>
+            </div>
+            <div class="modal-footer">
+                <span>SEALED EVIDENCE. DO NOT DISTRIBUTE.</span>
+                <span id="modal-doc-id">DOC ID: 000000</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
